@@ -49,7 +49,7 @@ docker exec fox consul reload
 ```
 ## 3. Kiểm tra
 
-Vào giao diện web để kiểm tra: http://192.168.1.2:8500
+Vào giao diện web để kiểm tra: http://192.168.1.1:8500
 
 ## Tài liệu tham khảo
 - https://learn.hashicorp.com/consul/day-0/containers-guide
