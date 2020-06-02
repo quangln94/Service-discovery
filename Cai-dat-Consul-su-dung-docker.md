@@ -23,7 +23,7 @@ docker run \
   -p 8600:8600/udp \
   --name=master-01 \
   -e CONSUL_LOCAL_CONFIG='{
-  "bind_addr":"192.168.20.98"
+  "bind_addr":"192.168.1.1"
   }' \
   consul agent -server -ui -node=server-01 -bootstrap-expect=1 -client=0.0.0.0
 ```
@@ -34,9 +34,9 @@ docker run \
   --network host \
   --name=client-01 \
   -e CONSUL_LOCAL_CONFIG='{
-  "bind_addr":"192.168.20.99"
+  "bind_addr":"192.168.1.2"
   }' \
-  consul agent -node=client-01 -join=192.168.20.98
+  consul agent -node=client-01 -join=192.168.1.1
 ```
 ## 2. Khai báo Service cho Client
 ### 2.1 Khai báo Service `Node_exporter`
