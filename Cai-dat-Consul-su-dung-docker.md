@@ -21,7 +21,7 @@ docker run \
   -d \
   -p 8500:8500 \
   -p 8600:8600/udp \
-  --name=badger \
+  --name=master-01 \
   -e CONSUL_LOCAL_CONFIG='{
   "bind_addr":"192.168.20.98"
   }' \
@@ -32,7 +32,7 @@ docker run \
 docker run \
   -d \
   --network host \
-  --name=fox \
+  --name=client-01 \
   -e CONSUL_LOCAL_CONFIG='{
   "bind_addr":"192.168.20.99"
   }' \
@@ -41,11 +41,11 @@ docker run \
 ## 2. Khai báo Service cho Client
 ### 2.1 Khai báo Service `Node_exporter`
 ```sh
-docker exec fox /bin/sh -c "echo '{\"service\": {\"name\": \"node_exporter\", \"tags\": [\"node-exporter\"], \"port\": 9100}}' >> /consul/config/service_node_exporter.json"
+docker exec client-01 /bin/sh -c "echo '{\"service\": {\"name\": \"node_exporter\", \"tags\": [\"node-exporter\"], \"port\": 9100}}' >> /consul/config/service_node_exporter.json"
 ```
 ### 2.2 Reload lại cấu hình của Client
 ```
-docker exec fox consul reload
+docker exec client-01 consul reload
 ```
 ## 3. Kiểm tra
 
